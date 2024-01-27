@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.AI;
 
-public class EnemyMovement : MonoBehaviour
+public class EnemyMovement : ObjectHealth
 {
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private Transform target;

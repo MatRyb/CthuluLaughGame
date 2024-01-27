@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6543406083321410832}
   - component: {fileID: 177353475136129435}
   - component: {fileID: 7602110932281200520}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,6 +119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23b61f98f28193d49a144549840c40af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100
+  health: 0
   agent: {fileID: 7602110932281200520}
   target: {fileID: 0}
   Speed: 2
