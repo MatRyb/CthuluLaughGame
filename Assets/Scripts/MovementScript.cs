@@ -74,7 +74,7 @@ public class MovementScript : ObjectHealth
         timer = Time.time;
         isAttacking = true;
         Collider[] hits = Physics.OverlapCapsule(new Vector3(attackTarget.position.x, attackTarget.position.y + 0.2f, attackTarget.position.z),
-            new Vector3(attackTarget.position.x, attackTarget.position.y - 0.2f, attackTarget.position.z), 0.75f, enemyLayers.value);
+            new Vector3(attackTarget.position.x, attackTarget.position.y - 0.2f, attackTarget.position.z), 1.5f, enemyLayers.value);
     
         for(int i=0; i<hits.Length; i++)
         {
@@ -98,9 +98,9 @@ public class MovementScript : ObjectHealth
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(new Vector3(attackTarget.position.x, attackTarget.position.y+0.2f, attackTarget.position.z), 0.75f);
-        Gizmos.DrawWireSphere(new Vector3(attackTarget.position.x, attackTarget.position.y, attackTarget.position.z), 0.75f);
-        Gizmos.DrawWireSphere(new Vector3(attackTarget.position.x, attackTarget.position.y-0.2f, attackTarget.position.z), 0.75f);
+        Gizmos.DrawWireSphere(new Vector3(attackTarget.position.x, attackTarget.position.y+0.2f, attackTarget.position.z), 1.5f);
+        Gizmos.DrawWireSphere(new Vector3(attackTarget.position.x, attackTarget.position.y, attackTarget.position.z), 1.5f);
+        Gizmos.DrawWireSphere(new Vector3(attackTarget.position.x, attackTarget.position.y-0.2f, attackTarget.position.z), 1.5f);
     }
 
     public void OnRestartBtnClick()

@@ -295,11 +295,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   health: 0
+  restartScreen: {fileID: 0}
   controller: {fileID: 1867476373290754766}
   attackTarget: {fileID: 330917590079287832}
   cam: {fileID: 0}
   speed: 6
-  dmg: 0
+  dmg: 5
+  slider: {fileID: 0}
+  attackDuration: 1
   enemyLayers:
     serializedVersion: 2
     m_Bits: 128
