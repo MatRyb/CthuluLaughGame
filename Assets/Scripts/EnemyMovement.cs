@@ -8,6 +8,7 @@ public class EnemyMovement : ObjectHealth
 {
     [SerializeField] public Transform attackPos;
     [SerializeField] public Transform attackPosEnd;
+    [SerializeField] Animator animate;
 
     [SerializeField] public NavMeshAgent agent;
     [SerializeField] public GameObject target;
