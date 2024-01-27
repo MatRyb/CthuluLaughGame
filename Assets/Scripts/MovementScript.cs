@@ -19,6 +19,7 @@ public class MovementScript : ObjectHealth
     float turnSmoothVelocity;
     void Start()
     {
+        StartHealth();
         Cursor.lockState = CursorLockMode.Locked;
         controller.GetComponent<CharacterController>();
     }
@@ -64,7 +65,6 @@ public class MovementScript : ObjectHealth
         base.TakeDamage(value);
         slider.value = GetHealth();
     }
-
 
     private void OnDrawGizmos()
     {

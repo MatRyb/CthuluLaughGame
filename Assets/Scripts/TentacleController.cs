@@ -6,17 +6,20 @@ using UnityEngine;
 
 public class TentacleController : MonoBehaviour
 {
-    Transform[] tentacleSpawns = null;
-    Tentacle prevTentacle = null;
+    [SerializeField] GameObject tentaclePrefab;
+    GameObject player;
+    [SerializeField] Transform[] tentacleSpawns = null;
+    int prevTentacleIndex = -2;
+    int currTentacleIndex = -1;
     Tentacle currentTentacle = null;
-    bool isTentacleAlive = false;
+    public bool isTentacleAlive = false;
     bool deployTimer = false;
     float timer;
     float spawnCooldown;
 
     void Start()
     {
-
+        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
@@ -26,25 +29,33 @@ public class TentacleController : MonoBehaviour
         {
             deployTimer = true; 
             timer = Time.time;
+            spawnCooldown = UnityEngine.Random.Range(3, 8); 
         }
 
-        if(!isTentacleAlive && Time.time >= timer+spawnCooldown)
+        if(!isTentacleAlive && Time.time >= timer+spawnCooldown && deployTimer)
         {
-            isTentacleAlive=true;
+            isTentacleAlive = true;
             deployTimer = false;
-
-
+            Transform tentacleSpawn = GeneratePosForSpawn();
+            GameObject t = Instantiate(tentaclePrefab, tentacleSpawn.transform.position, Quaternion.identity);
+            t.transform.Translate(0, 2.0f, 0);
         }
     }
 
     Transform GeneratePosForSpawn()
     {
-        //bool generatingDone = 
-        while(true)
+        bool generatingDone = true;
+        int rand = 0;
+        while(generatingDone)
         {
-
+            rand = UnityEngine.Random.Range(0, 7);
+            if (!(rand == prevTentacleIndex) || !(rand == currTentacleIndex))
+            {
+                prevTentacleIndex = currTentacleIndex;
+                currTentacleIndex = rand;
+                generatingDone = false;
+            }
         }
-
-            return null;
+        return tentacleSpawns[rand];
     }
 }
