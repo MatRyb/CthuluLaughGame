@@ -47,6 +47,7 @@ public class EnemyMovement : ObjectHealth
             if (canAttack && distance < attackRange)
             {
                 transform.LookAt(target.transform);
+                animate.SetBool("isAttacking", true);
                 Collider[] hits = Physics.OverlapCapsule(new Vector3(attackPos.position.x, attackPos.position.y, attackPos.position.z),
                     new Vector3(attackPosEnd.position.x, attackPosEnd.position.y, attackPosEnd.position.z), 0.5f, playerLayers.value);
 
@@ -63,6 +64,7 @@ public class EnemyMovement : ObjectHealth
         canAttack = false;
         yield return new WaitForSeconds(AttackCooldown);
         canAttack = true;
+        animate.SetBool("isAttacking", false);
     }
 
     private void OnDrawGizmos()
@@ -79,11 +81,12 @@ public class EnemyMovement : ObjectHealth
 
     IEnumerator Respawner()
     {
-        Color color = GetComponent<MeshRenderer>().material.color;
+        //Color color = GetComponent<MeshRenderer>().material.color;
         isDead = true;
+        animate.SetBool("isDead", true);
         GetComponent<BoxCollider>().enabled = false;
         GetComponent<NavMeshAgent>().enabled = false;
-        GetComponent<MeshRenderer>().material.color = Color.red;
+        //GetComponent<MeshRenderer>().material.color = Color.red;
 
 
         yield return new WaitForSeconds(respawnTimer);
@@ -91,7 +94,8 @@ public class EnemyMovement : ObjectHealth
         isDead = false;
         GetComponent<BoxCollider>().enabled = true;
         GetComponent<NavMeshAgent>().enabled = true;
-        GetComponent<MeshRenderer>().material.color = color;
+        //GetComponent<MeshRenderer>().material.color = color;
+        animate.SetBool("isDead", false);
         StartHealth();
     }
 }

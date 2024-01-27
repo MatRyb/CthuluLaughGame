@@ -9,6 +9,9 @@ public class TentacleController : MonoBehaviour
     public int killedTentacles = 0;
     private int maxKilledTentacles = 0;
 
+    public int freeSkeletons = 0;
+    public int permaSkeletons = 1;
+
     [SerializeField] GameObject tentaclePrefab;
     GameObject player;
     [SerializeField] Transform[] tentacleSpawns = null;
@@ -71,5 +74,10 @@ public class TentacleController : MonoBehaviour
             }
         }
         return tentacleSpawns[rand];
+    }
+
+    public void UpgradeMood()
+    {
+
     }
 }
