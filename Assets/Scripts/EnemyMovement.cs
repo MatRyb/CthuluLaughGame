@@ -5,8 +5,8 @@ using UnityEngine.AI;
 
 public class EnemyMovement : ObjectHealth
 {
-    [SerializeField] private NavMeshAgent agent;
-    [SerializeField] private Transform target;
+    [SerializeField] public NavMeshAgent agent;
+    [SerializeField] public Transform target;
     [SerializeField] private float Speed = 2;
     [SerializeField] private float AttackCooldown = 1;
     [SerializeField] private float damage = 1;
@@ -23,7 +23,7 @@ public class EnemyMovement : ObjectHealth
 
         if (playerInRange && canAttack)
         {
-            //GameObject.Find("Player").GetComponent<ControllerForPlayer>().currentHealth -= damage;
+            GameObject.Find("Player").GetComponent<MovementScript>().TakeDamage(damage);
             StartCoroutine(AttackSpeed());
             Debug.Log("Attack");
         }

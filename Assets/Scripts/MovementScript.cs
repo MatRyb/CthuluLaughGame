@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MovementScript : ObjectHealth
 {
@@ -9,6 +10,7 @@ public class MovementScript : ObjectHealth
     public Transform cam;
     public float speed = 6f;
     [SerializeField] float dmg;
+    public Slider slider;
 
     [SerializeField]
     private LayerMask enemyLayers;
@@ -56,6 +58,13 @@ public class MovementScript : ObjectHealth
         }
     
     }
+
+    public override void TakeDamage(float value)
+    {
+        base.TakeDamage(value);
+        slider.value = GetHealth();
+    }
+
 
     private void OnDrawGizmos()
     {
