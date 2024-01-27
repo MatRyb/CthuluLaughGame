@@ -8,8 +8,8 @@ public class EnemyMovement : ObjectHealth
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private Transform target;
     [SerializeField] private float Speed = 2;
-    private float enemyCooldown = 1;
-    private float damage = 1;
+    [SerializeField] private float AttackCooldown = 1;
+    [SerializeField] private float damage = 1;
     private bool playerInRange = false;
     private bool canAttack = true;
 
@@ -24,7 +24,7 @@ public class EnemyMovement : ObjectHealth
         if (playerInRange && canAttack)
         {
             //GameObject.Find("Player").GetComponent<ControllerForPlayer>().currentHealth -= damage;
-            StartCoroutine(AttackCooldown());
+            StartCoroutine(AttackSpeed());
             Debug.Log("Attack");
         }
     }
@@ -43,10 +43,10 @@ public class EnemyMovement : ObjectHealth
             playerInRange = false;
         }
     }
-    IEnumerator AttackCooldown()
+    IEnumerator AttackSpeed()
     {
         canAttack = false;
-        yield return new WaitForSeconds(enemyCooldown);
+        yield return new WaitForSeconds(AttackCooldown);
         canAttack = true;
     }
 }
