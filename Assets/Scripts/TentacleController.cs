@@ -39,6 +39,7 @@ public class TentacleController : MonoBehaviour
 
     Transform GeneratePosForSpawn()
     {
+        //bool generatingDone = 
         while(true)
         {
 
