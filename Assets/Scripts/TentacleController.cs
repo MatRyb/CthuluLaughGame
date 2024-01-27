@@ -6,19 +6,31 @@ using UnityEngine;
 
 public class TentacleController : MonoBehaviour
 {
+    public int killedTentacles = 0;
+    private int maxKilledTentacles = 0;
+
     [SerializeField] GameObject tentaclePrefab;
     GameObject player;
     [SerializeField] Transform[] tentacleSpawns = null;
+    public Transform[] skeletonSpawns = new Transform[4];
     int prevTentacleIndex = -2;
     int currTentacleIndex = -1;
-    Tentacle currentTentacle = null;
     public bool isTentacleAlive = false;
     bool deployTimer = false;
     float timer;
     float spawnCooldown;
 
-    void Start()
+    public int getKilledTentacles()
     {
+        if(killedTentacles > maxKilledTentacles)
+        {
+            killedTentacles = maxKilledTentacles;
+        }
+        return killedTentacles;
+    }
+
+    void Start()
+    {                                                       
         player = GameObject.Find("Player");
     }
 
@@ -36,9 +48,11 @@ public class TentacleController : MonoBehaviour
         {
             isTentacleAlive = true;
             deployTimer = false;
+            maxKilledTentacles++;
             Transform tentacleSpawn = GeneratePosForSpawn();
             GameObject t = Instantiate(tentaclePrefab, tentacleSpawn.transform.position, Quaternion.identity);
             t.transform.Translate(0, 2.0f, 0);
+            skeletonSpawns = tentacleSpawn.gameObject.GetComponentsInChildren<Transform>();
         }
     }
 
@@ -49,7 +63,7 @@ public class TentacleController : MonoBehaviour
         while(generatingDone)
         {
             rand = UnityEngine.Random.Range(0, 7);
-            if (!(rand == prevTentacleIndex) || !(rand == currTentacleIndex))
+            if (!(rand == prevTentacleIndex) && !(rand == currTentacleIndex))
             {
                 prevTentacleIndex = currTentacleIndex;
                 currTentacleIndex = rand;

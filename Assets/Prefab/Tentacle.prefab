@@ -122,3 +122,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 20
   health: 0
+  skeletPrefab: {fileID: 4131843122080656221, guid: f4ba37fb1d4e7a94897c85f41faaedb9,
+    type: 3}

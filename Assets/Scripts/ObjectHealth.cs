@@ -24,7 +24,6 @@ public class ObjectHealth : MonoBehaviour, IDamageTaker
         }
     }
 
-
     public virtual void OnDead()
     {
         Debug.Log("Dead");
