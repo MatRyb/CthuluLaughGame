@@ -31,7 +31,7 @@ public class MovementScript : ObjectHealth
 
         if(dir.magnitude >= 0.1f )
         {
-            float targetAngle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+            float targetAngle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg + cam.rotation.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnLerpTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
