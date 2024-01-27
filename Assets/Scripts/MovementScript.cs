@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MovementScript : ObjectHealth
@@ -61,6 +62,11 @@ public class MovementScript : ObjectHealth
             Attack();
             Debug.Log("Boop");
         }
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            transform.Translate(Vector3.forward * 5);
+        }
     }
 
     private void Attack()
@@ -99,6 +105,7 @@ public class MovementScript : ObjectHealth
 
     public void OnRestartBtnClick()
     {
-
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene(0);
     }
 }

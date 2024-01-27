@@ -772,6 +772,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 556133070211560913, guid: 486a00279eb717447836def185004978,
+        type: 3}
+      propertyPath: m_Damping
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 1525046573140037216, guid: 486a00279eb717447836def185004978,
         type: 3}
       propertyPath: m_FollowOffset.y
@@ -832,6 +837,11 @@ PrefabInstance:
       propertyPath: m_LookAt
       value: 
       objectReference: {fileID: 539840542}
+    - target: {fileID: 5065242393736375448, guid: 486a00279eb717447836def185004978,
+        type: 3}
+      propertyPath: m_XAxis.m_MaxSpeed
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5065242393736375448, guid: 486a00279eb717447836def185004978,
         type: 3}
       propertyPath: m_XAxis.m_InvertInput
@@ -1214,6 +1224,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 539840541}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &539840543 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8038295937535820368, guid: 7d3d98cdb2e13c7478264553c969db8e,
+    type: 3}
+  m_PrefabInstance: {fileID: 539840541}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364177238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 386ea18b289994440a3fdc493b18416e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &543338174
 GameObject:
   m_ObjectHideFlags: 0
@@ -2937,7 +2959,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2041820666}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 539840543}
+        m_TargetAssemblyTypeName: MovementScript, Assembly-CSharp
+        m_MethodName: OnRestartBtnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2041820666
 MonoBehaviour:
   m_ObjectHideFlags: 0
