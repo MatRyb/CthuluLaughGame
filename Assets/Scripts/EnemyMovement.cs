@@ -34,6 +34,9 @@ public class EnemyMovement : ObjectHealth
     public bool headTVisible = false;
     public bool weaponUpdated = false;
 
+    [SerializeField] AudioSource asc;
+    [SerializeField] AudioClip defeat;
+
     [SerializeField]
     private LayerMask playerLayers;
 
@@ -92,6 +95,9 @@ public class EnemyMovement : ObjectHealth
 
         if (!isDead)
         {
+            asc.Stop();
+            asc.clip = defeat;
+            asc.Play();
             float distance = Vector3.Distance(new Vector3(target.transform.position.x, 0, target.transform.position.z),
                new Vector3(transform.position.x, 0, transform.position.z));
 

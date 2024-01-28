@@ -122,7 +122,7 @@ MonoBehaviour:
   bone: {fileID: 7758100977032403376}
   agent: {fileID: 7602110932281200520}
   target: {fileID: 0}
-  Speed: 10
+  Speed: 7
   AttackCooldown: 1
   damage: 1
   respawnTimer: 7
@@ -131,6 +131,8 @@ MonoBehaviour:
   neckLaceVisible: 0
   headTVisible: 0
   weaponUpdated: 0
+  asc: {fileID: 8582380231317584513}
+  defeat: {fileID: 8300000, guid: 558a64ba11c272a49a735142a5a62a2a, type: 3}
   playerLayers:
     serializedVersion: 2
     m_Bits: 256
