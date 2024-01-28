@@ -103,6 +103,7 @@ public class EnemyMovement : ObjectHealth
 
             if (canAttack && distance < attackRange)
             {
+
                 transform.LookAt(target.transform);
                 animate.SetBool("isAttacking", true);
                 Collider[] hits = Physics.OverlapCapsule(new Vector3(attackPos.position.x, attackPos.position.y, attackPos.position.z),

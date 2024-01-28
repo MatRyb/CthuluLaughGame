@@ -9,6 +9,8 @@ public class MovementScript : ObjectHealth
 {
     [SerializeField] AudioSource audio;
     [SerializeField] Animator animator;
+    [SerializeField]
+    AudioClip[] clips;
 
     [SerializeField] GameObject restartScreen;
     public CharacterController controller;
@@ -46,6 +48,9 @@ public class MovementScript : ObjectHealth
 
         if(horizontal == 0f &&  vertical == 0f)
         {
+            //audio.Stop();
+            //audio.clip = clips[0];
+            //audio.Play();
             animator.SetBool("isMove", false);
         }
         else
@@ -74,14 +79,17 @@ public class MovementScript : ObjectHealth
 
         if(Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking)
         {
+            audio.Stop();
+            audio.clip = clips[1];
+            audio.Play();
             animator.SetBool("isAttack", true);
             Attack();
         }
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        /*if(Input.GetKeyDown(KeyCode.Space))
         {
             transform.Translate(Vector3.forward * 5);
-        }
+        }*/
     }
 
     private void Attack()
