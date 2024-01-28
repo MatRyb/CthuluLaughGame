@@ -20,7 +20,7 @@ public class MoodController : MonoBehaviour
                 if (tc.getKilledTentacles() >= 3)
                 {
                     moodLevel = 1;
-                    tc.permaSkeletons = 2;
+                    tc.permaSkeletons = 5;
                     tc.freeSkeletons = 2;
                 }
                 break;
@@ -28,7 +28,7 @@ public class MoodController : MonoBehaviour
                 if (tc.getKilledTentacles() >= 5)
                 {
                     moodLevel = 2;
-                    tc.permaSkeletons = 3;
+                    tc.permaSkeletons = 5;
                     tc.freeSkeletons = 4;
                 }
                 break;
@@ -36,7 +36,6 @@ public class MoodController : MonoBehaviour
                 if (tc.getKilledTentacles() >= 7)
                 {
                     moodLevel = 3;
-                    tc.permaSkeletons = 4;
                     tc.freeSkeletons = 8;
                 }
                 break;
@@ -44,8 +43,7 @@ public class MoodController : MonoBehaviour
                 if (tc.getKilledTentacles() >= 9)
                 {
                     moodLevel = 4;
-                    tc.permaSkeletons = 5;
-                    tc.freeSkeletons = 15;
+                    tc.freeSkeletons = 16;
                 }
                 break;
             case 4:

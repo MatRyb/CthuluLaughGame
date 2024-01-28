@@ -11,10 +11,10 @@ public class TentacleController : MonoBehaviour
     private int maxKilledTentacles = 0;
 
     public int freeSkeletons = 0;
-    public int permaSkeletons = 1;
+    public int permaSkeletons = 3;
 
     private int currPSkeletons = 0;
-    private int currFSkeletons = 0;
+    public int currFSkeletons = 0;
 
     [SerializeField] GameObject tentaclePrefab;
     GameObject player;
@@ -44,6 +44,28 @@ public class TentacleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(currFSkeletons < freeSkeletons)
+        {
+            Vector3 spawnPos = Vector3.zero;
+            bool gen = false;
+            while(!gen)
+            {
+                float x = UnityEngine.Random.Range(0, 80) - 40.5f;
+                float z = UnityEngine.Random.Range(0, 80) - 40.5f;
+
+                if(x*x + z*z < 40*40)
+                {
+                    if(Vector3.Distance(player.transform.position, new Vector3(x, 1, z ) )>= 5.0f ) 
+                    {
+                        gen = true;
+                        spawnPos = new Vector3(x, 1, z);
+                    }
+                }
+            }
+
+            GameObject t = Instantiate(skeletPrefab, spawnPos, Quaternion.identity);
+            currFSkeletons++;
+        }
         if(currPSkeletons < permaSkeletons)
         {
             GameObject t = Instantiate(skeletPrefab, new Vector3(0, 1, 0), Quaternion.identity);

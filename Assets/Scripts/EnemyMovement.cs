@@ -8,6 +8,7 @@ public class EnemyMovement : ObjectHealth
 {
     [SerializeField] private Material[] skeleMaterials;
     private MoodController mCon;
+    private TentacleController tCon;
     [SerializeField] public Transform attackPos;
     [SerializeField] public Transform attackPosEnd;
     [SerializeField] Animator animate;
@@ -29,19 +30,29 @@ public class EnemyMovement : ObjectHealth
     private bool canAttack = true;
     private bool isDead = false;
 
+    private float removeTimer = 2000000;
+
     private void Start()
     { 
         target = GameObject.FindGameObjectWithTag("Player");
         mCon = GameObject.FindGameObjectWithTag("GameController").GetComponent<MoodController>();
+        tCon = GameObject.FindGameObjectWithTag("GameController").GetComponent<TentacleController>();
         StartHealth();
         if(killable)
         {
-            Destroy(gameObject, 30);
+            removeTimer = Time.time + UnityEngine.Random.Range(5, 10);
         }
     }
 
     private void Update()
     {
+        if(Time.time >= removeTimer && !isDead)
+        {
+            isDead = true;
+            tCon.currFSkeletons -= 1;
+            Destroy(gameObject, 2);
+        }
+
         if (!changedSprite && mCon.moodLevel >= 3)
         {
             changedSprite = true;
