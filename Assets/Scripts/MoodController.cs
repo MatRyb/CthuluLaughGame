@@ -5,11 +5,24 @@ using UnityEngine;
 public class MoodController : MonoBehaviour
 {
     TentacleController tc;
+    [SerializeField] AudioClip[] moodClips;
+    [SerializeField] Material[] arenaMats;
+    [SerializeField] MeshRenderer arena;
+
+    [SerializeField] Material waterClean;
+    [SerializeField] MeshRenderer water;
+
+    AudioSource auS;
     public int moodLevel = 0;
 
     void Start()
     {
+        //arenaMaterial.
         tc = GetComponent<TentacleController>();
+        auS = GetComponent<AudioSource>();
+
+        auS.clip = moodClips[0];
+        auS.Play();
     }
 
     void Update()
@@ -19,6 +32,10 @@ public class MoodController : MonoBehaviour
             case 0:
                 if (tc.getKilledTentacles() >= 3)
                 {
+                    arena.material = arenaMats[0];
+                    auS.Stop();
+                    auS.clip = moodClips[1];
+                    auS.Play();
                     moodLevel = 1;
                     tc.permaSkeletons = 5;
                     tc.freeSkeletons = 2;
@@ -27,6 +44,10 @@ public class MoodController : MonoBehaviour
             case 1:
                 if (tc.getKilledTentacles() >= 5)
                 {
+                    arena.material = arenaMats[1];
+                    auS.Stop();
+                    auS.clip = moodClips[2];
+                    auS.Play();
                     moodLevel = 2;
                     tc.permaSkeletons = 5;
                     tc.freeSkeletons = 4;
@@ -35,6 +56,10 @@ public class MoodController : MonoBehaviour
             case 2:
                 if (tc.getKilledTentacles() >= 7)
                 {
+                    arena.material = arenaMats[2];
+                    auS.Stop();
+                    auS.clip = moodClips[3];
+                    auS.Play();
                     moodLevel = 3;
                     tc.freeSkeletons = 8;
                 }
@@ -42,6 +67,11 @@ public class MoodController : MonoBehaviour
             case 3:
                 if (tc.getKilledTentacles() >= 9)
                 {
+                    water.material = waterClean;
+                    arena.material = arenaMats[3];
+                    auS.Stop();
+                    auS.clip = moodClips[4];
+                    auS.Play();
                     moodLevel = 4;
                     tc.freeSkeletons = 16;
                 }

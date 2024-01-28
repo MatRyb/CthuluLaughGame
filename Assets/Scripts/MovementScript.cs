@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class MovementScript : ObjectHealth
 {
+    [SerializeField] AudioSource audio;
+    [SerializeField] Animator animator;
+
     [SerializeField] GameObject restartScreen;
     public CharacterController controller;
     [SerializeField] Transform attackTarget;
@@ -41,6 +44,15 @@ public class MovementScript : ObjectHealth
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
+        if(horizontal == 0f &&  vertical == 0f)
+        {
+            animator.SetBool("isMove", false);
+        }
+        else
+        {
+            animator.SetBool("isMove", true);
+        }
+
         Vector3 dir = new Vector3(horizontal, 0, vertical).normalized;
 
         if(dir.magnitude >= 0.1f )
@@ -55,10 +67,14 @@ public class MovementScript : ObjectHealth
 
         if(isAttacking)
             if(Time.time >= timer + attackDuration)
+            {
+                animator.SetBool("isAttack", false);
                 isAttacking = false;
+            }
 
         if(Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking)
         {
+            animator.SetBool("isAttack", true);
             Attack();
         }
 

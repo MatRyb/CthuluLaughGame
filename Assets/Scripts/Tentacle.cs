@@ -7,6 +7,7 @@ public class Tentacle : ObjectHealth
 {
     TentacleController tc;
     [SerializeField] GameObject skeletPrefab;
+    [SerializeField] Animator animator;
     void Start()
     {
         tc = GameObject.Find("GameManager").GetComponent<TentacleController>();
@@ -19,8 +20,9 @@ public class Tentacle : ObjectHealth
         {
             tc.isTentacleAlive = false;
             tc.killedTentacles += 1;
-            tc.skeletonSpawns = new Transform[4];
-            Destroy(gameObject, 0.3f);
+            animator.SetBool("deadState", true);
+            transform.position.Set(transform.position.x, -0.5f, transform.position.x);
+            Destroy(gameObject, 1.7f);
         }
     }
 }

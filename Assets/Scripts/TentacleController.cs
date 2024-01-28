@@ -86,7 +86,6 @@ public class TentacleController : MonoBehaviour
             maxKilledTentacles++;
             Transform tentacleSpawn = GeneratePosForSpawn();
             GameObject t = Instantiate(tentaclePrefab, tentacleSpawn.transform.position, Quaternion.identity);
-            t.transform.Translate(0, 2.0f, 0);
             skeletonSpawns = tentacleSpawn.gameObject.GetComponentsInChildren<Transform>();
         }
     }

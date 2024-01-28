@@ -7,6 +7,14 @@ using UnityEngine.UIElements;
 public class EnemyMovement : ObjectHealth
 {
     [SerializeField] private Material[] skeleMaterials;
+    [SerializeField] private Material[] skeleTrinkets;
+
+    [SerializeField] private GameObject skeleNeck;
+    [SerializeField] private GameObject skeleHead;
+
+    [SerializeField] private GameObject spearWeapon;
+    [SerializeField] private GameObject caneWeapon;
+
     private MoodController mCon;
     private TentacleController tCon;
     [SerializeField] public Transform attackPos;
@@ -22,6 +30,9 @@ public class EnemyMovement : ObjectHealth
     [SerializeField] private float respawnTimer = 10.0f;
     public bool killable = true;
     public bool changedSprite = false;
+    public bool neckLaceVisible = false;
+    public bool headTVisible = false;
+    public bool weaponUpdated = false;
 
     [SerializeField]
     private LayerMask playerLayers;
@@ -57,6 +68,26 @@ public class EnemyMovement : ObjectHealth
         {
             changedSprite = true;
             bone.GetComponent<SkinnedMeshRenderer>().material = skeleMaterials[Random.Range(0, skeleMaterials.Length)];
+        }
+
+        if(!headTVisible && mCon.moodLevel >= 1)
+        {
+            skeleHead.SetActive(true);
+            headTVisible = true;
+            skeleHead.GetComponent<MeshRenderer>().material = skeleTrinkets[Random.Range(0, skeleTrinkets.Length)];
+        }
+
+        if (!neckLaceVisible && mCon.moodLevel >= 2)
+        {
+            skeleNeck.SetActive(true);
+            neckLaceVisible = true;
+            skeleNeck.GetComponent<MeshRenderer>().material = skeleTrinkets[Random.Range(0, skeleTrinkets.Length)];
+        }
+        if(!weaponUpdated && mCon.moodLevel >= 4)
+        {
+            spearWeapon.SetActive(false);
+            caneWeapon.SetActive(true);
+            weaponUpdated = true;
         }
 
         if (!isDead)
