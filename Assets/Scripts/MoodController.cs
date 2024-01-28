@@ -5,7 +5,7 @@ using UnityEngine;
 public class MoodController : MonoBehaviour
 {
     TentacleController tc;
-    int moodLevel = 0;
+    public int moodLevel = 0;
 
     void Start()
     {
@@ -36,7 +36,7 @@ public class MoodController : MonoBehaviour
                 if (tc.getKilledTentacles() >= 7)
                 {
                     moodLevel = 3;
-                    tc.permaSkeletons = 5;
+                    tc.permaSkeletons = 4;
                     tc.freeSkeletons = 8;
                 }
                 break;

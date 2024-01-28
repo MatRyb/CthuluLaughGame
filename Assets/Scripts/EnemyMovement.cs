@@ -6,9 +6,12 @@ using UnityEngine.UIElements;
 
 public class EnemyMovement : ObjectHealth
 {
+    [SerializeField] private Material[] skeleMaterials;
+    private MoodController mCon;
     [SerializeField] public Transform attackPos;
     [SerializeField] public Transform attackPosEnd;
     [SerializeField] Animator animate;
+    [SerializeField] GameObject bone;
 
     [SerializeField] public NavMeshAgent agent;
     [SerializeField] public GameObject target;
@@ -16,6 +19,8 @@ public class EnemyMovement : ObjectHealth
     [SerializeField] private float AttackCooldown = 1;
     [SerializeField] private float damage = 1;
     [SerializeField] private float respawnTimer = 10.0f;
+    public bool killable = true;
+    public bool changedSprite = false;
 
     [SerializeField]
     private LayerMask playerLayers;
@@ -25,14 +30,24 @@ public class EnemyMovement : ObjectHealth
     private bool isDead = false;
 
     private void Start()
-    {
+    { 
         target = GameObject.FindGameObjectWithTag("Player");
+        mCon = GameObject.FindGameObjectWithTag("GameController").GetComponent<MoodController>();
         StartHealth();
-        Destroy(gameObject, 30);
+        if(killable)
+        {
+            Destroy(gameObject, 30);
+        }
     }
 
     private void Update()
     {
+        if (!changedSprite && mCon.moodLevel >= 3)
+        {
+            changedSprite = true;
+            bone.GetComponent<SkinnedMeshRenderer>().material = skeleMaterials[Random.Range(0, skeleMaterials.Length)];
+        }
+
         if (!isDead)
         {
             float distance = Vector3.Distance(new Vector3(target.transform.position.x, 0, target.transform.position.z),

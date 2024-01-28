@@ -60,7 +60,6 @@ public class MovementScript : ObjectHealth
         if(Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking)
         {
             Attack();
-            Debug.Log("Boop");
         }
 
         if(Input.GetKeyDown(KeyCode.Space))

@@ -6,11 +6,15 @@ using UnityEngine;
 
 public class TentacleController : MonoBehaviour
 {
+    [SerializeField] private GameObject skeletPrefab;
     public int killedTentacles = 0;
     private int maxKilledTentacles = 0;
 
     public int freeSkeletons = 0;
     public int permaSkeletons = 1;
+
+    private int currPSkeletons = 0;
+    private int currFSkeletons = 0;
 
     [SerializeField] GameObject tentaclePrefab;
     GameObject player;
@@ -40,6 +44,12 @@ public class TentacleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(currPSkeletons < permaSkeletons)
+        {
+            GameObject t = Instantiate(skeletPrefab, new Vector3(0, 1, 0), Quaternion.identity);
+            t.GetComponent<EnemyMovement>().killable = false;
+            currPSkeletons++;
+        }
         if(!isTentacleAlive && !deployTimer)
         {
             deployTimer = true; 
